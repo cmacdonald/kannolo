@@ -201,7 +201,7 @@ impl DensePlainHNSW {
     #[staticmethod]
     #[pyo3(signature = (data_vec, dim, m=32, ef_construction=200, metric="dotproduct".to_string()))]
     pub fn build_from_array(
-        data_vec: PyReadonlyArray1<f32>,
+        data_vec: PyArrayLike1<f32>,
         dim: usize,
         m: usize,
         ef_construction: usize,
@@ -281,7 +281,7 @@ impl DensePlainHNSW {
     #[pyo3(signature = (queries, k, ef_search=100, early_exit_threshold=None))]
     pub fn search(
         &self,
-        queries: PyReadonlyArray1<f32>,
+        queries: PyArrayLike1<f32>,
         k: usize,
         ef_search: usize,
         early_exit_threshold: Option<f32>,
@@ -353,7 +353,7 @@ impl DensePlainHNSW {
     pub fn search_filtered(
         &self,
         py: Python<'_>,
-        query: PyReadonlyArray1<f32>,
+        query: PyArrayLike1<f32>,
         k: usize,
         predicate: PyObject,
         ef_search: usize,
@@ -434,7 +434,7 @@ impl DensePlainHNSW {
     pub fn search_filtered_gamma(
         &self,
         py: Python<'_>,
-        query: PyReadonlyArray1<f32>,
+        query: PyArrayLike1<f32>,
         k: usize,
         predicate: PyObject,
         ef_search: usize,
